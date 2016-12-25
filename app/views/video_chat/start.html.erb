@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PusherTC</title>
+  <!--<link data-turbolinks-track="true" href="/assets/application-51c96dccfe5cfb5ba372b2a0ad0918bf.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/application-e0ab66ed6810593120abe37bb3caae3e.js"></script>
+  -->
+  <meta content="authenticity_token" name="csrf-param" />
+  <meta content="cpp5Gjz+iaPwx1Ru4+cOC8k++pGvoD8JX1Og0O8L/aE=" name="csrf-token"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+</head>
+<body class="root" id="pages">
+<div class="wrapper">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="button navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <p>PusherTC</p></div>
+      <div class="collapse navbar-collapse">
+        <form class="navbar-form navbar-right" id="send-message">
+          <div class="form-group"><input class="form-control" id="message"/></div>
+          <button class="btn btn-success" type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div
+    data-user-name="<%= current_user.login %>"
+    data-api-key="<%= Pusher.key %>"
+    data-auth-endpoint="/users/video/auth"
+    id="chat"></div>
+    <br/>
+
+    <div id="remoteVideos"></div>
+      <ul class="list-inline" id="allVideos">
+        <li>
+          <video autoplay="" id="localVideo" muted="muted"></video>
+        </li>
+      </ul>
+    <dl class="dl-horizontal" id="messages"></dl>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<h1>Edit</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_tag(:action => :post) do %>
+        <input type="hidden" name="sender" value="<%= @micropost.id %>">
+        <label>
+          Post:
+          <textarea name="content"><%= @micropost.content %></textarea>
+        </label>
+        <input type="submit" value="OK" class="btn btn-lg btn-primary"/>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<% provide(:title, @user.login) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.login %>
+      </h1>
+      <%= image_tag("peter.jpg", :alt => "user") %>
+    </section>
+    <section class="communicate">
+      <%= link_to "Message", compose_path(@user.id), class: "btn btn-lg btn-primary"%>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+        <h3>Microposts (<%= @user.microposts.count %>)</h3>
+        <ol class="microposts">
+          <%= render @microposts %>
+        </ol>
+        <%= will_paginate @microposts %>
+    <% end %>
+  </div>
+</div>

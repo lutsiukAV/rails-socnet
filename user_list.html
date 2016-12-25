@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="usrList">
+<head>
+    <meta charset="UTF-8">
+    <title>user_list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        angular.module('usrList', [])
+            .service("userService", function($http, $q) {
+                var deferred = $q.defer();
+                $http.get('http://127.0.0.1:3000/users/json').then(function(response) {
+                    deferred.resolve(response.data);
+                });
+
+                this.getUsers = function() {
+                    return deferred.promise;
+                }
+            })
+
+            .controller('List', function($scope, userService) {
+
+                var promise = userService.getUsers();
+                promise.then(function(data) {
+
+                    $scope.users = data;
+                    //console.log($scope.users);
+                });
+
+            });
+    </script>
+</head>
+<body>
+    <h1 align="center" style="font-family: Constantia; color: #730E15"> Angular interface</h1>
+    <div ng-controller="List">
+        <ul style="text-align: center; background-color: darkcyan">
+            <li ng-repeat="user in users">{{ user.id }} - {{ user.login }}</li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h1><%= @group.name %></h1>
+<div>
+  <% if @group.owner_id == current_user.id || current_user.admin? %>
+    <%= link_to "Change status (status #{getstatus(@group)})", "changestatus/#{@group.id}", class: "btn btn-lg btn-primary"%>
+  <% end %>
+</div>
+<div class="row">
+  <aside class="col-md-4">
+    <!--<section class="user_info">-->
+      <!--<%= render 'shared/user_info' %>-->
+    <!--</section>-->
+    <section class="micropost_form">
+      <%= render 'shared/micropost_form' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3>Micropost Feed</h3>
+    <%= render 'shared/feed' %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to image_tag('pear.jpg'), root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path, class: "navbar-header" %></li>
+        <% if logged_in? %>
+            <li><%= link_to "Settings", edit_user_path(current_user), class: "navbar-header" %></li>
+            <li><%= link_to 'Friends', friends_path, class: "navbar-header" %></li>
+            <li><%= link_to 'Groups', groups_path, class: "navbar-header" %></li>
+            <li><%= link_to 'Users', users_path, class: "navbar-header" %></li>
+            <li><%= link_to 'Messages', messages_path, class: "navbar-header" %></li>
+            <li><%= link_to 'Video', video_path(@current_user.id), class: "navbar-header" %></li>
+            <li><%= link_to "Log out", logout_path, method: "delete", class: "navbar-header" %></li>
+        <% else %>
+            <li><%= link_to "Log in", login_path, class: "navbar-header" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>

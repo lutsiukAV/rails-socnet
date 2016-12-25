@@ -1,0 +1,39 @@
+<% provide(:title, 'All groups') %>
+<h1>All groups</h1>
+<ul class="groups">
+
+  <% if !Array(@groups).empty? %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name of group</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% Array(@groups).each do |group| %>
+        <% if getstatus(group) !='closed' || group.owner_id == current_user.id || current_user.admin? %>
+        <tr>
+          <td>
+            <%= link_to "#{group.name}", group %>
+          </td>
+
+          <% if current_user.admin? || current_user.id == group.owner_id %>
+              <td>
+                <%= link_to "Remove group", "groups/remove/#{group.id}", method: :delete, class: "btn btn-primary", data: {confirm: "You sure?"} %>
+              </td>
+          <% end %>
+        </tr>
+        <%end%>
+
+
+    <% end %>
+
+    <tbody>
+    </table>
+      <% else %>
+  <h2>There are no groups yet!!! Yours will be first</h2>
+  <% end %>
+  <%= link_to 'Create group', creategroup_path, class: "btn btn-lg btn-primary"%>
+</ul>

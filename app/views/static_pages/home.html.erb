@@ -1,0 +1,12 @@
+
+<% provide(:title, "Home") %>
+<div class="center jumbotron">
+  <h1 style="color: darkred;">PEARNET</h1>
+
+  <% if current_user == nil%>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary"%>
+  <%else%>
+      <%= render 'shared/feed' %>
+  <%end%>
+</div>
+

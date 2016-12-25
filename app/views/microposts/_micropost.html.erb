@@ -1,0 +1,19 @@
+<li id="<%= micropost.id %>">
+
+  <span class="user"><%= link_to micropost.user.login, micropost.user %></span>
+  <span class="content">
+    <% if micropost.content.start_with? 'img_' %>
+      <%= image_tag(micropost.content[4..-1], height: 'auto') %>
+
+    <% else %>
+      <%= micropost.content %>
+    <% end %>
+    </span>
+  <span class="timestamp">Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <% if current_user?(micropost.user) || current_user.admin? || micropost.group.owner_id == current_user.id%>
+  <%= link_to "delete", "microposts/destroy/#{micropost.id}", method: :delete,
+              data: {confirm: "You sure?"} %>
+   <%= link_to "edit", "microposts/edit/#{micropost.id}", method: :get%>
+  <% end %>
+  </span>
+</li>

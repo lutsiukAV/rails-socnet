@@ -1,0 +1,11 @@
+<h1>Messages</h1>
+<ul class="msg-list">
+  <% @msg.each do |m| %>
+      <li class="msg-item">
+       <p class="msg-sender"><%= m[0].login %></p>
+        <p class="msg-time"><%= m[2] %></p>
+        <p class="msg-text"><%= m[1] %></p>
+        <p><%= link_to 'More', dialog_path(m[0]) %></p>
+      </li>
+  <% end %>
+</ul>

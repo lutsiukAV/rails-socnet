@@ -1,0 +1,31 @@
+<% provide(:title, 'Friends') %>
+<h1>Friends</h1>
+<ul class="friends">
+  <% if !@friends.nil? %>
+      <%= link_to "Find firends!!", 'users/' %>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Nickname</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @friends.each do |friend| %>
+            <tr>
+              <td>
+                <%= link_to User.find_by(id:friend.friend_id).login, friend %>
+              </td>
+              <td>
+                <%= link_to "Remove from friendlist", "friends/remove/#{friend.friend_id}", method: :post, class: "btn btn-primary", data: {confirm: "You sure?"} %>
+              </td>
+            </tr>
+        <% end %>
+
+        <tbody>
+        </table>
+  <% else %>
+      <h2>You do not have friends :'(</h2>
+      <%= link_to "Find firends!!", 'users/' %>
+  <% end %>
+</ul>
